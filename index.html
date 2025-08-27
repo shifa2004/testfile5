@@ -447,7 +447,6 @@
             <button class="btn" id="resetConnectionBtn" style="margin-top: 15px;">Reset Connection</button>
         </footer>
     </div>
-
     <!-- Registration Modal -->
     <div class="modal" id="registerModal">
         <div class="modal-content">
@@ -460,6 +459,10 @@
                         <input type="text" id="regName" required>
                     </div>
                     <div class="form-group">
+                        <label for="regUserId">Choose User ID</label>
+                        <input type="text" id="regUserId" required pattern="[a-zA-Z0-9_]+" title="User ID can only contain letters, numbers, and underscores.">
+                    </div>
+                    <div class="form-group">
                         <label for="regEmail">Email Address</label>
                         <input type="email" id="regEmail" required>
                     </div>
@@ -467,6 +470,73 @@
                         <label for="regPhone">Phone Number</label>
                         <input type="tel" id="regPhone" required>
                     </div>
+                    <div class="form-group">
+                        <label for="regUserType">Register As</label>
+                        <select id="regUserType" required>
+                            <option value="">Select User Type</option>
+                            <option value="doctor">Doctor</option>
+                            <option value="drone_operator">Drone Operator</option>
+                        </select>
+                    </div>
+
+                    <!-- Doctor Specific Fields -->
+                    <div id="doctorFields" style="display: none;">
+                        <div class="form-group">
+                            <label for="regSpecialization">Specialization</label>
+                            <select id="regSpecialization">
+                                <option value="">Select Specialization</option>
+                                <option value="Emergency Medicine">Emergency Medicine</option>
+                                <option value="Cardiology">Cardiology</soption>
+                                <option value="Neurology">Neurology</option>
+                                <option value="Pediatrics">Pediatrics</option>
+                                <option value="Orthopedics">Orthopedics</option>
+                                <option value="General Surgery">General Surgery</option>
+                                <option value="Internal Medicine">Internal Medicine</option>
+                                <option value="Anesthesiology">Anesthesiology</option>
+                                <option value="Radiology">Radiology</option>
+                                <option value="Dermatology">Dermatology</option>
+                                <option value="Ophthalmology">Ophthalmology</option>
+                                <option value="Psychiatry">Psychiatry</option>
+                                <option value="Oncology">Oncology</option>
+                                <option value="Gastroenterology">Gastroenterology</option>
+                                <option value="Pulmonology">Pulmonology</option>
+                                <option value="Nephrology">Nephrology</option>
+                                <option value="Endocrinology">Endocrinology</option>
+                                <option value="Urology">Urology</option>
+                                <option value="Obstetrics and Gynecology">Obstetrics and Gynecology</option>
+                                <option value="Family Medicine">Family Medicine</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="regLicense">Medical License Number</label>
+                            <input type="text" id="regLicense" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regClinic">Clinic/Hospital Name</label>
+                            <input type="text" id="regClinic" required>
+                        </div>
+                    </div>
+
+                    <!-- Drone Operator Specific Fields -->
+                    <div id="operatorFields" style="display: none;">
+                        <div class="form-group">
+                            <label for="regCity">City</label>
+                            <input type="text" id="regCity">
+                        </div>
+                        <div class="form-group">
+                            <label for="regVillage">Village</label>
+                            <input type="text" id="regVillage">
+                        </div>
+                        <div class="form-group">
+                            <label for="regState">State</label>
+                            <input type="text" id="regState">
+                        </div>
+                        <div class="form-group">
+                            <label for="regCountry">Country</label>
+                            <input type="text" id="regCountry">
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label for="regPassword">Password</label>
                         <input type="password" id="regPassword" required>
@@ -480,12 +550,11 @@
                     </div>
                 </form>
                 <div class="form-switch">
-                    Already have an account? <a href="#" id="showRegisteredUsers">Login here</a>
+                    Already have an account? <a href="#" id="showLogin">Login here</a>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- User Type Selection Modal -->
     <div class="modal" id="userTypeModal">
         <div class="modal-content">
@@ -510,11 +579,14 @@
                     <label for="doctorNameSelect">Select Your Name:</label>
                     <select id="doctorNameSelect" required>
                         <option value="">-- Select Your Name --</option>
-                        <option value="Dr. sheza (cardiologist)">Dr. sheza (cardiologist)</option>
-                        <option value="Dr. aliza">Dr. aliza</option>
-                        <option value="Dr. emre">Dr. emre</option>
-                        <option value="Dr. sanem">Dr. sanem</option>
-                        <option value="Dr. zulfishan">Dr. zulfishan</option>
+                        <option value="Dr. Sheza (Cardiologist)">Dr. Sheza (Cardiologist)</option>
+                        <option value="Dr. Aliza (Emergency Physician)">Dr. Aliza (Emergency Physician)</option>
+                        <option value="Dr. Emre (Neurologist)">Dr. Emre (Neurologist)</option>
+                        <option value="Dr. Sanem (Pediatrician)">Dr. Sanem (Pediatrician)</option>
+                        <option value="Dr. Zulfishan (Orthopedic Surgeon)">Dr. Zulfishan (Orthopedic Surgeon)</option>
+                        <option value="Dr. Anya (General Practitioner)">Dr. Anya (General Practitioner)</option>
+                        <option value="Dr. Ben (Anesthesiologist)">Dr. Ben (Anesthesiologist)</option>
+                        <option value="Dr. Chloe (Radiologist)">Dr. Chloe (Radiologist)</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -556,11 +628,14 @@
                     <label for="doctorToConnectSelect">Connect to Doctor:</label>
                     <select id="doctorToConnectSelect" required>
                         <option value="">-- Select Doctor --</option>
-                        <option value="Dr. sheza (cardiologist)">Dr. sheza (cardiologist)</option>
-                        <option value="Dr. aliza">Dr. aliza</option>
-                        <option value="Dr. emre">Dr. emre</option>
-                        <option value="Dr. sanem">Dr. sanem</option>
-                        <option value="Dr. zulfishan">Dr. zulfishan</option>
+                        <option value="Dr. Sheza (Cardiologist)">Dr. Sheza (Cardiologist)</option>
+                        <option value="Dr. Aliza (Emergency Physician)">Dr. Aliza (Emergency Physician)</option>
+                        <option value="Dr. Emre (Neurologist)">Dr. Emre (Neurologist)</option>
+                        <option value="Dr. Sanem (Pediatrician)">Dr. Sanem (Pediatrician)</option>
+                        <option value="Dr. Zulfishan (Orthopedic Surgeon)">Dr. Zulfishan (Orthopedic Surgeon)</option>
+                        <option value="Dr. Anya (General Practitioner)">Dr. Anya (General Practitioner)</option>
+                        <option value="Dr. Ben (Anesthesiologist)">Dr. Ben (Anesthesiologist)</option>
+                        <option value="Dr. Chloe (Radiologist)">Dr. Chloe (Radiologist)</option>
                     </select>
                 </div>
                 <div class="form-actions">
@@ -644,6 +719,7 @@
 
         // Form Switch Links
         const showRegisteredUsers = document.getElementById('showRegisteredUsers');
+        const showLogin = document.getElementById('showLogin'); // Added for the new registration code
 
         // User Type Selection Buttons
         const iamDroneOperatorBtn = document.getElementById('iamDroneOperatorBtn');
@@ -789,6 +865,11 @@
             navMenu.classList.remove('active');
             closeAllModals();
             registerModal.style.display = 'block';
+            // Reset conditional fields visibility when opening registration form
+            document.getElementById('doctorFields').style.display = 'none';
+            document.getElementById('operatorFields').style.display = 'none';
+            document.getElementById('regUserType').value = ''; // Clear selection
+            document.getElementById('registrationForm').reset(); // Clear form fields
         });
 
         registeredUsersLink.addEventListener('click', (e) => {
@@ -805,21 +886,21 @@
             aboutModal.style.display = 'block';
         });
 
-        // Close Button Event Listeners
+        // Close Buttons
         closeRegister.addEventListener('click', closeAllModals);
         closeUserType.addEventListener('click', closeAllModals);
         closeDoctorConnect.addEventListener('click', closeAllModals);
         closeDroneOperatorConnect.addEventListener('click', closeAllModals);
         closeAbout.addEventListener('click', closeAllModals);
 
-        // Form Switch Link Event Listener
-        showRegisteredUsers.addEventListener('click', (e) => {
-            e.preventDefault();
-            registerModal.style.display = 'none';
-            userTypeModal.style.display = 'block';
-        });
+        // Form Switch Links
+        // showRegisteredUsers.addEventListener('click', (e) => { // This was already present, but the new code uses 'showLogin'
+        //     e.preventDefault();
+        //     registerModal.style.display = 'none';
+        //     userTypeModal.style.display = 'block';
+        // });
 
-        // User Type Selection Button Event Listeners
+        // User Type Selection Buttons
         iamDroneOperatorBtn.addEventListener('click', () => {
             userTypeModal.style.display = 'none';
             droneOperatorConnectModal.style.display = 'block';
@@ -888,13 +969,13 @@
             }
         });
 
-        // Registration Form Submission
-        document.getElementById('registrationForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Registration successful! Please select your role to continue.');
-            registerModal.style.display = 'none';
-            userTypeModal.style.display = 'block';
-        });
+        // Registration Form Submission (Original)
+        // document.getElementById('registrationForm').addEventListener('submit', (e) => {
+        //     e.preventDefault();
+        //     alert('Registration successful! Please select your role to continue.');
+        //     registerModal.style.display = 'none';
+        //     userTypeModal.style.display = 'block';
+        // });
 
         // Service Card Links
         document.getElementById('droneSimulator').addEventListener('click', () => {
@@ -911,6 +992,156 @@
                 socket.connect();
             }
         }, 5000);
+
+        // --- START OF NEW REGISTRATION CODE ---
+
+        // Initialize users from localStorage
+        let registeredUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+
+        // Save users to localStorage
+        function saveUsers() {
+            localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
+        }
+
+        // Registration form conditional fields
+        const regUserTypeSelect = document.getElementById('regUserType');
+        const doctorFields = document.getElementById('doctorFields');
+        const operatorFields = document.getElementById('operatorFields');
+
+        // Assuming a loginModal exists for switching, if not, this part needs adjustment
+        const loginModal = document.getElementById('loginModal'); // This element is not in the provided HTML, might need to be added or handled differently
+
+        // Event listener for switching to login from registration
+        if (showLogin) { // Check if showLogin element exists
+            showLogin.addEventListener('click', (e) => {
+                e.preventDefault();
+                registerModal.style.display = 'none';
+                if (loginModal) { // Only try to display if loginModal exists
+                    loginModal.style.display = 'block';
+                } else {
+                    console.warn("Login modal not found. Cannot switch to login form.");
+                    // Optionally, you could redirect to a login page or show an alert
+                }
+            });
+        }
+
+
+        // Conditional fields display based on user type selection (Registration)
+        regUserTypeSelect.addEventListener('change', () => {
+            if (regUserTypeSelect.value === 'doctor') {
+                doctorFields.style.display = 'block';
+                operatorFields.style.display = 'none';
+                // Make doctor fields required
+                document.getElementById('regSpecialization').setAttribute('required', 'required');
+                document.getElementById('regLicense').setAttribute('required', 'required');
+                document.getElementById('regClinic').setAttribute('required', 'required');
+                // Remove required from operator fields
+                document.getElementById('regCity').removeAttribute('required');
+                document.getElementById('regVillage').removeAttribute('required');
+                document.getElementById('regState').removeAttribute('required');
+                document.getElementById('regCountry').removeAttribute('required');
+            } else if (regUserTypeSelect.value === 'drone_operator') {
+                doctorFields.style.display = 'none';
+                operatorFields.style.display = 'block';
+                // Make operator fields required
+                document.getElementById('regCity').setAttribute('required', 'required');
+                document.getElementById('regVillage').setAttribute('required', 'required');
+                document.getElementById('regState').setAttribute('required', 'required');
+                document.getElementById('regCountry').setAttribute('required', 'required');
+                // Remove required from doctor fields
+                document.getElementById('regSpecialization').removeAttribute('required');
+                document.getElementById('regLicense').removeAttribute('required');
+                document.getElementById('regClinic').removeAttribute('required');
+            } else {
+                doctorFields.style.display = 'none';
+                operatorFields.style.display = 'none';
+                // Remove required from all conditional fields
+                document.getElementById('regSpecialization').removeAttribute('required');
+                document.getElementById('regLicense').removeAttribute('required');
+                document.getElementById('regClinic').removeAttribute('required');
+                document.getElementById('regCity').removeAttribute('required');
+                document.getElementById('regVillage').removeAttribute('required');
+                document.getElementById('regState').removeAttribute('required');
+                document.getElementById('regCountry').removeAttribute('required');
+            }
+        });
+
+        // Registration form submission (New)
+        document.getElementById('registrationForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const regName = document.getElementById('regName').value;
+            const regUserId = document.getElementById('regUserId').value;
+            const regEmail = document.getElementById('regEmail').value;
+            const regPhone = document.getElementById('regPhone').value;
+            const regUserType = document.getElementById('regUserType').value;
+            const regPassword = document.getElementById('regPassword').value;
+            const regConfirmPassword = document.getElementById('regConfirmPassword').value;
+            const regSpecialization = document.getElementById('regSpecialization').value; // Get selected specialization
+
+            // Validation
+            if (regPassword !== regConfirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            // Check if User ID already exists
+            const userExists = registeredUsers.some(user => user.userId === regUserId);
+            if (userExists) {
+                alert('User ID already taken. Please choose a different one.');
+                return;
+            }
+
+            // Create new user object
+            const newUser = {
+                name: regName,
+                userId: regUserId,
+                email: regEmail,
+                phone: regPhone,
+                userType: regUserType,
+                password: regPassword,
+                skills: [],
+                workDetails: '',
+                metrics: { // Initialize metrics to 0
+                    assignedCases: 0,
+                    completedTasks: 0,
+                    responseTime: 0,
+                    successRate: 100 // Default success rate
+                }
+            };
+
+            // Add conditional fields based on user type
+            if (regUserType === 'doctor') {
+                newUser.specialization = regSpecialization; // Use selected specialization
+                newUser.license = document.getElementById('regLicense').value;
+                newUser.clinic = document.getElementById('regClinic').value;
+                newUser.metrics.onlineConsultations = 0;
+                newUser.metrics.emergencyResponses = 0;
+            } else if (regUserType === 'drone_operator') {
+                newUser.city = document.getElementById('regCity').value;
+                newUser.village = document.getElementById('regVillage').value;
+                newUser.state = document.getElementById('regState').value;
+                newUser.country = document.getElementById('regCountry').value;
+                // Drone operators don't have specific metrics like flight hours in this simplified dashboard
+                // newUser.metrics.flightHours = 0;
+                // newUser.metrics.successfulMissions = 0;
+            }
+
+            registeredUsers.push(newUser);
+            saveUsers();
+
+            alert(`Registration successful! Your User ID is: ${regUserId}. You can now login.`);
+            
+            registerModal.style.display = 'none';
+            // The original code had `loginModal.style.display = 'block';` here.
+            // Since `loginModal` is not defined in the provided HTML,
+            // I'm changing it to display `userTypeModal` as per the original flow after registration.
+            userTypeModal.style.display = 'block'; 
+            
+            // document.getElementById('loginUserId').value = regUserId; // This assumes a login form exists
+            // document.getElementById('loginPassword').value = ''; // This assumes a login form exists
+            document.getElementById('registrationForm').reset(); // Clear registration form fields
+        });
+        // --- END OF NEW REGISTRATION CODE ---
     </script>
 </body>
 </html>
