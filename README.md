@@ -32,4 +32,17 @@ It includes a **Drone Simulator** and a **Doctor Interface**, with **real-time G
 git clone https://github.com/<your-username>/<your-repo>.git
 cd <your-repo>
 
+2. Install Dependencies
+npm install
 
+3. Run the Server
+npm start
+
+
+By default, the server runs at http://localhost:8003
+
+Open 👉 http://localhost:8003/drone.html
+ → Drone view
+
+Open 👉 http://localhost:8003/doctor.html
+ → Doctor view
